@@ -38,9 +38,9 @@
 
     Example usage::
 
-        from juggernaut import Juggernaut, Roster
+        from juggernaut import Juggernaut, RedisRoster
         jug = Juggernaut()
-        roster = Roster(jug)
+        roster = RedisRoster(jug)
         roster.run()
 
     By default it keeps the number of online users in redis so that you
@@ -56,7 +56,7 @@
     If you want to respond to users signing in and out you need to
     override the `on_signed_in` and `on_signed_out` methods::
 
-        class MyRoster(Roster):
+        class MyRoster(RedisRoster):
             def on_signed_in(self, user_id):
                 print 'User signed in', user_id
             def on_signed_out(self, user_id):
@@ -135,13 +135,13 @@ class Roster(object):
 
     The roster can be used as a daemon::
 
-        from juggernaut import Roster
-        Roster().run()
+        from juggernaut import RedisRoster
+        RedisRoster().run()
 
     Or as a client to see the current contents::
 
-        from juggernaut import Roster
-        roster = Roster()
+        from juggernaut import RedisRoster
+        roster = RedisRoster()
         print roster.get_online_users()
     """
 
